@@ -40,24 +40,28 @@ Generated TOC:
 
 # This Readme
 
-* [Options](#options)
-* [Install](#install)
-  * [Adding it to Eleventy](#adding-it-to-the-eleventy-engine)
-  * [Using the filter](#using-the-provided-filter)
-  * [Configuring](#configuring)
-* [Gotchyas](#gotchyas)
+- [Table of Contents (nesting) Eleventy Plugin](#table-of-contents-nesting-eleventy-plugin)
+- [This Readme](#this-readme)
+  - [Options](#options)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Adding it to the Eleventy Engine](#adding-it-to-the-eleventy-engine)
+    - [Using the provided filter](#using-the-provided-filter)
+    - [Configuring](#configuring)
+  - [Gotchyas](#gotchyas)
 
 
 ## Options
 
 ```javascript
 const defaults = {
-  tags: ['h2', 'h3', 'h4'], // Which heading tags are selected (headings must each have an ID attribute)
-  ignoredElements: [],  // Elements to ignore when constructing the label for every header (useful for ignoring permalinks, must be selectors)
-  wrapper: 'nav',       // Element to put around the root `ol`
-  wrapperClass: 'toc',  // Class for the element around the root `ol`
-  headingText: '',      // Optional text to show in heading above the wrapper element
-  headingTag: 'h2'      // Heading tag when showing heading above the wrapper element
+  tags: ['h2', 'h3', 'h4'],    // Which heading tags are selected (headings must each have an ID attribute)
+  ignoredElements: [],         // Elements to ignore when constructing the label for every header (useful for ignoring permalinks, must be selectors)
+  wrapper: 'nav',              // Element to put around the root `ol`
+  wrapperClass: 'toc',         // Class for the element around the root `ol`
+  headingText: '',             // Optional text to show in heading outside/ inside the wrapper element
+  headingTag: 'h2',            // Heading tag when showing heading outside/ inside the wrapper element
+  headingPlacement: 'outside'  // Whether the heading will be outside the wrapper or not
 }
 ```
 

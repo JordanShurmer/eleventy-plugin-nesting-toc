@@ -18,6 +18,18 @@ const tests = {
         assert.equal(results.children[0].text, 'Foo');
     },
 
+    noClass() {
+        const toc = new Toc(`<h1 id="foo">Foo</h1>`, {tags: ['h1'], wrapperClass: ''});
+        const html = toc.html();
+        assert.ok(!html.includes(`class=`), 'Class attribute added to TOC');
+    },
+
+    simpleWithInnerHeader() {
+        const toc = new Toc(`<h1 id="foo">Foo</h1>`, {tags: ['h1'], headingPlacement: 'inside', headingText: 'Heading'});
+        const html = toc.html();
+        assert.ok(html.includes(`><h2>`), 'Heading was not placed inside TOC');
+    },
+
     twoH2s() {
         const toc = new Toc(`
             <h1>Foo</h1>
