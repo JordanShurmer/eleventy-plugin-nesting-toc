@@ -9,7 +9,8 @@ const defaults = {
     wrapper: 'nav',
     wrapperClass: 'toc',
     headingText: '',
-    headingTag: 'h2'
+    headingTag: 'h2',
+    headingPlacement: 'outside'
 };
 
 function getParent(prev, current) {
@@ -93,20 +94,68 @@ class Toc {
     }
 
     html() {
-        const {wrapper, wrapperClass, headingText, headingTag} = this.options;
+        const {wrapper, wrapperClass, headingText, headingTag, headingPlacement} = this.options;
         const root = this.get();
 
         let html = '';
 
         if (root.children.length) {
 
-            if (headingText) {
-                html += `<${headingTag}>${headingText}</${headingTag}>\n`;
+            if (headingPlacement == 'inside') {
+
+                if (headingText) {
+
+                    if (wrapperClass) {
+
+                        html += `<${wrapper} class="${wrapperClass}"><${headingTag}>${headingText}</${headingTag}>\n${root.html()}</${wrapper}>`;
+    
+                    }
+    
+                    else {
+                        
+                    html += `<${wrapper}><${headingTag}>${headingText}</${headingTag}>\n${root.html()}</${wrapper}>`;
+                        
+                    }
+                } 
+                
+                else {
+              
+                    if (wrapperClass) {
+
+                        html += `<${wrapper} class="${wrapperClass}">${root.html()}</${wrapper}>`;
+    
+                    }
+    
+                    else {
+                        
+                        html += `<${wrapper}>${root.html()}</${wrapper}>`;
+                        
+                    }
+
+                }
+            } 
+
+            else {
+
+                if (headingText) {
+                    html += `<${headingTag}>${headingText}</${headingTag}>\n`;
+                }
+
+                if (wrapperClass) {
+
+                    html += `<${wrapper} class="${wrapperClass}">${root.html()}</${wrapper}>`;
+
+                }
+
+                else {
+                    
+                    html += `<${wrapper}>${root.html()}</${wrapper}>`;
+
+                }
             }
-
-            html += `<${wrapper} class="${wrapperClass}">${root.html()}</${wrapper}>`;
+            
         }
-
+        
         return html;
     }
 }
