@@ -142,3 +142,7 @@ A few things must be in place for this to work properly, and provide the proper 
 
 * The first matched heading on the page should be the topmost. _Don't put an h3 before an h2_.
 * you can only use actual heading tags. _Don't use `tags=['section']`, etc._
+
+---
+
+Made by Jordan Shurmer at [aule.dev](https://aule.dev). Need an Eleventy site built, sped up, or fixed? request@aule.dev
